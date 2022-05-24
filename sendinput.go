@@ -9,7 +9,29 @@ import (
 	"github.com/lxn/win"
 )
 
-func sendBtnEvent(btn button) error {
+func SendKeyboardInput(code KeyCode, press bool) error {
+	var direction uint32
+	if !press {
+		direction = 2
+	}
+
+	i := win.KEYBD_INPUT{
+		Type: win.INPUT_KEYBOARD,
+		Ki: win.KEYBDINPUT{
+			WVk:     uint16(code),
+			DwFlags: direction,
+		},
+	}
+
+	// ret means the number of events success sent.
+	ret := win.SendInput(1, unsafe.Pointer(&i), int32(unsafe.Sizeof(i)))
+	if ret == 0 {
+		return errors.New("SendInput failed")
+	}
+	return nil
+}
+
+func SendMouseBtnInput(btn MouseBtn) error {
 	i := win.MOUSE_INPUT{
 		Type: win.INPUT_MOUSE,
 		Mi: win.MOUSEINPUT{
@@ -25,7 +47,7 @@ func sendBtnEvent(btn button) error {
 	return nil
 }
 
-func sendRelEvent(x, y int32) error {
+func SendMouseRelInput(x, y int32) error {
 	i := win.MOUSE_INPUT{
 		Type: win.INPUT_MOUSE,
 		Mi: win.MOUSEINPUT{
@@ -43,7 +65,7 @@ func sendRelEvent(x, y int32) error {
 	return nil
 }
 
-func sendwhlEvent(horizontal bool, delta int32) error {
+func SendMouseWhlInput(delta int32, horizontal bool) error {
 	var flags uint32
 	if horizontal {
 		flags = win.MOUSEEVENTF_HWHEEL
