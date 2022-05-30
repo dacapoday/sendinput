@@ -2,7 +2,11 @@
 
 package sendinput
 
-import "github.com/lxn/win"
+import (
+	"strings"
+
+	"github.com/lxn/win"
+)
 
 // KeyCode https://docs.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes
 type KeyCode uint16
@@ -156,7 +160,6 @@ const (
 	KEY_7 KeyCode = 0x37
 	KEY_8 KeyCode = 0x38
 	KEY_9 KeyCode = 0x39
-
 	KEY_A KeyCode = 0x41
 	KEY_B KeyCode = 0x42
 	KEY_C KeyCode = 0x43
@@ -195,3 +198,222 @@ const (
 	MOUSE_MIDDLEDOWN MouseBtn = win.MOUSEEVENTF_MIDDLEDOWN
 	MOUSE_MIDDLEUP   MouseBtn = win.MOUSEEVENTF_MIDDLEUP
 )
+
+func Key(name string) KeyCode {
+	name = strings.ToUpper(name)
+	switch name {
+	case "CAPSLOCK":
+		return KEY_CAPITAL
+	case "ALT":
+		return KEY_MENU
+	case "ALTLEFT":
+		return KEY_LMENU
+	case "ALTRIGHT":
+		return KEY_RMENU
+	case "CONTROL":
+		return KEY_CONTROL
+	case "CONTROLLEFT":
+		return KEY_LCONTROL
+	case "CONTROLRIGHT":
+		return KEY_RCONTROL
+	case "OSLEFT":
+		return KEY_LWIN
+	case "OSRIGHT":
+		return KEY_RWIN
+	case "SHIFT":
+		return KEY_SHIFT
+	case "SHIFTLEFT":
+		return KEY_LSHIFT
+	case "SHIFTRIGHT":
+		return KEY_RSHIFT
+	case "BACKSPACE":
+		return KEY_BACK
+	case "ENTER":
+		return KEY_RETURN
+	case "SPACE":
+		return KEY_SPACE
+	case "TAB":
+		return KEY_TAB
+	case "ESCCAPE":
+		return KEY_ESCAPE
+	case "INSERT":
+		return KEY_INSERT
+	case "DELETE":
+		return KEY_DELETE
+	case "HOME":
+		return KEY_HOME
+	case "END":
+		return KEY_END
+
+	case "PAGEDOWN":
+		return KEY_NEXT
+	case "PAGEUP":
+		return KEY_PRIOR
+	case "ARROWUP":
+		return KEY_UP
+	case "ARROWDOWN":
+		return KEY_DOWN
+	case "ARROWLEFT":
+		return KEY_LEFT
+	case "ARROWRIGHT":
+		return KEY_RIGHT
+
+	case "F1":
+		return KEY_F1
+	case "F2":
+		return KEY_F2
+	case "F3":
+		return KEY_F3
+	case "F4":
+		return KEY_F4
+	case "F5":
+		return KEY_F5
+	case "F6":
+		return KEY_F6
+	case "F7":
+		return KEY_F7
+	case "F8":
+		return KEY_F8
+	case "F9":
+		return KEY_F9
+	case "F10":
+		return KEY_F10
+	case "F11":
+		return KEY_F11
+	case "F12":
+		return KEY_F12
+	case "F13":
+		return KEY_F13
+	case "F14":
+		return KEY_F14
+	case "F15":
+		return KEY_F15
+	case "F16":
+		return KEY_F16
+	case "F17":
+		return KEY_F17
+	case "F18":
+		return KEY_F18
+	case "F19":
+		return KEY_F19
+	case "F20":
+		return KEY_F20
+	case "F21":
+		return KEY_F21
+	case "F22":
+		return KEY_F22
+	case "F23":
+		return KEY_F23
+	case "F24":
+		return KEY_F24
+
+	case "0", "DIGIT0":
+		return KEY_0
+	case "1", "DIGIT1":
+		return KEY_1
+	case "2", "DIGIT2":
+		return KEY_2
+	case "3", "DIGIT3":
+		return KEY_3
+	case "4", "DIGIT4":
+		return KEY_4
+	case "5", "DIGIT5":
+		return KEY_5
+	case "6", "DIGIT6":
+		return KEY_6
+	case "7", "DIGIT7":
+		return KEY_7
+	case "8", "DIGIT8":
+		return KEY_8
+	case "9", "DIGIT9":
+		return KEY_9
+
+	case "A", "KEYA":
+		return KEY_A
+	case "B", "KEYB":
+		return KEY_B
+	case "C", "KEYC":
+		return KEY_C
+	case "D", "KEYD":
+		return KEY_D
+	case "E", "KEYE":
+		return KEY_E
+	case "F", "KEYF":
+		return KEY_F
+	case "G", "KEYG":
+		return KEY_G
+	case "H", "KEYH":
+		return KEY_H
+	case "I", "KEYI":
+		return KEY_I
+	case "J", "KEYJ":
+		return KEY_J
+	case "K", "KEYK":
+		return KEY_K
+	case "L", "KEYL":
+		return KEY_L
+	case "M", "KEYM":
+		return KEY_M
+	case "N", "KEYN":
+		return KEY_N
+	case "O", "KEYO":
+		return KEY_O
+	case "P", "KEYP":
+		return KEY_P
+	case "Q", "KEYQ":
+		return KEY_Q
+	case "R", "KEYR":
+		return KEY_R
+	case "S", "KEYS":
+		return KEY_S
+	case "T", "KEYT":
+		return KEY_T
+	case "U", "KEYU":
+		return KEY_U
+	case "V", "KEYV":
+		return KEY_V
+	case "W", "KEYW":
+		return KEY_W
+	case "X", "KEYX":
+		return KEY_X
+	case "Y", "KEYY":
+		return KEY_Y
+	case "Z", "KEYZ":
+		return KEY_Z
+
+	case "[", "BRACKETLEFT":
+	case "]", "BRACKETRIGHT":
+	case "<":
+	case ">":
+	case "(":
+	case ")":
+	case "{":
+	case "}":
+	case "~":
+	case "`", "BACKQUOTE":
+	case "!":
+	case "@":
+	case "#":
+	case "$":
+	case "%":
+	case "^":
+	case "&":
+	case "*":
+	case "+":
+	case "=", "EQUAL":
+	case "_":
+	case "-", "MINUS":
+	case ":":
+	case ";", "SEMICOLON":
+	case "|":
+	case `\`, "BACKSLASH":
+	case `"`, "QUOTE":
+	case "'":
+	case ",", "COMMA":
+	case ".", "PERIOD":
+	case "/", "SLASH":
+	case "?":
+	}
+
+	return 0
+}
